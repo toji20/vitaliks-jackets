@@ -1,0 +1,9 @@
+.main-bg {
+    background-image: url('/vitalik-main-bg.png');
+} 
+
+@media (max-width: 756px) {
+    .main-bg {
+        background-image: url('/vitalik-main-bg-mob.png');
+    } 
+}

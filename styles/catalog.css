@@ -1,0 +1,158 @@
+/* catalog.css */
+.catalog-card__container {
+    border: 1px solid #C5C5C5;
+}
+
+.catalog-card__block {
+    padding: 40px 40px 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-card__info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.catalog-card__info:nth-child(2) {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.catalog-card__block-image {
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.catalog__conatiner-title {
+    font-size: 36px;
+    font-weight: 500;
+    padding: 28px 50px;
+}
+
+.catalog-card__block-image:hover {
+    transform: scale(1.05);
+}
+
+/* Модальное окно */
+.catalog-modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.catalog-modal__content {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.catalog-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 1001;
+}
+
+.catalog-modal__close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.catalog-modal__image {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+}
+
+.catalog-modal__info {
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalog-modal__info h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.catalog-modal__info p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #666;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .catalog-modal__content {
+        padding: 15px;
+        margin: 20px;
+    }
+    
+    .catalog-modal__close {
+        top: 5px;
+        right: 10px;
+        font-size: 24px;
+    }
+    
+    .catalog-modal__info h3 {
+        font-size: 20px;
+    }
+    
+    .catalog-modal__info p {
+        font-size: 18px;
+    }
+}

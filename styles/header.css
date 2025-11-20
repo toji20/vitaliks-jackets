@@ -1,0 +1,130 @@
+/* Десктопная версия */
+.header__conatiner {
+    background-color: rgba(0, 0, 0, 0.717);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 18%;
+  }
+  
+  .header__nav-list-item {
+      font-size: 16px;
+      padding: 8px 12px 8px 27px;
+      color: white;
+      font-weight: 200;
+      transition: all 0.2s ease-in-out;
+  }
+  
+  .header__function-list-item {
+      padding: 8px 12px 8px 27px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.2s ease-in-out;
+  }
+  
+  .header__nav-list-item:hover,
+  .header__function-list-item:hover {
+    background-color: rgba(245, 245, 220, 0.719);
+  }
+  
+  /* Мобильная версия */
+  .header__mobile-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .burger-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-menu {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  .mobile-nav-item,
+  .mobile-function-item {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  /* Cart Button Styles */
+.cart-button-desktop:hover,
+.cart-button-mobile:hover,
+.mobile-cart-button:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease-in-out;
+}
+
+.cart-button-desktop:active,
+.cart-button-mobile:active,
+.mobile-cart-button:active {
+    transform: translateY(0);
+}
+
+/* Header List Items */
+.header__nav-list-item,
+.header__function-list-item {
+    transition: all 0.3s ease-in-out;
+}
+
+.header__nav-list-item:hover,
+.header__function-list-item:hover {
+    transform: translateX(4px);
+}
+
+/* Mobile Menu Animations */
+.mobile-menu {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.mobile-nav-item,
+.mobile-function-item {
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-nav-item:hover,
+.mobile-function-item:hover {
+    border-left-color: #ffe6b6;
+    transform: translateX(8px);
+}
+
+/* Cart Icon Animation */
+.cart-button-mobile:hover svg,
+.cart-button-desktop:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Active State */
+.header__nav-list-item.active,
+.header__function-list-item.active {
+    background: rgba(255, 230, 182, 0.1);
+    border-left: 2px solid #ffe6b6;
+}
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .header__conatiner {
+      display: none !important;
+    }
+    
+    .header__mobile-container {
+      display: flex !important;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .header__mobile-container,
+    .mobile-menu {
+      display: none !important;
+    }
+    
+    .header__conatiner {
+      display: flex !important;
+    }
+  }
