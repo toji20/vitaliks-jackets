@@ -11,7 +11,9 @@ export default async function Home({
   searchParams: Promise<GetSearchParams> 
 }) {
   const jackets = await prisma.jacket.findMany({
-
+    where: {
+      disabled: false
+    }
   })
 const categories = await prisma.category.findMany({})
   return (

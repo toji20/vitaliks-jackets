@@ -25,7 +25,6 @@ export const VitalikBanner: React.FC<VitalikBannerProps> = ({ className }) => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-400/80 to-transparent blur-[0.5px]"></div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-400/80 to-transparent blur-[0.5px]"></div>
 
-      {/* Десктоп версия */}
       <div className="hidden md:block animate-marquee whitespace-nowrap flex items-center">
         {Array.from({ length: 18 }).map((_, index) => (
           <div key={index} className="inline-flex items-center mx-8 group">
@@ -57,7 +56,6 @@ export const VitalikBanner: React.FC<VitalikBannerProps> = ({ className }) => {
         ))}
       </div>
 
-      {/* Мобильная версия */}
       <div className="md:hidden animate-marquee-mobile whitespace-nowrap flex items-center">
         {Array.from({ length: 12 }).map((_, index) => (
           <div key={index} className="inline-flex items-center mx-4 group">
@@ -90,29 +88,12 @@ export const VitalikBanner: React.FC<VitalikBannerProps> = ({ className }) => {
         ))}
       </div>
 
-      {/* Дополнительная мобильная строка для лучшего заполнения */}
-      <div className="md:hidden animate-marquee-mobile-2 whitespace-nowrap flex items-center mt-3">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <div key={index} className="inline-flex items-center mx-3 group">
-            <span className="text-neutral-500 text-[12px] font-extralight uppercase tracking-[0.25em]
-                           transition-all duration-400 group-hover:text-neutral-400">
-              {fashionWords[(index + 5) % fashionWords.length]}
-            </span>
-            <span className="mx-2 text-neutral-700 text-xs transition-all duration-300 
-                           group-hover:text-neutral-600">
-              •
-            </span>
-          </div>
-        ))}
-      </div>
-
       <div className="absolute top-4 left-8 w-1.5 h-1.5 bg-neutral-500/60 rounded-full blur-[0.5px]"></div>
       <div className="absolute bottom-4 right-8 w-1.5 h-1.5 bg-neutral-500/60 rounded-full blur-[0.5px]"></div>
       
       <div className="absolute top-1/3 left-16 w-1 h-1 bg-neutral-600/40 rounded-full blur-[1px]"></div>
       <div className="absolute bottom-1/3 right-16 w-1 h-1 bg-neutral-600/40 rounded-full blur-[1px]"></div>
 
-      {/* Мобильные точки */}
       <div className="md:hidden absolute top-2 left-4 w-1 h-1 bg-neutral-500/40 rounded-full blur-[0.5px]"></div>
       <div className="md:hidden absolute bottom-2 right-4 w-1 h-1 bg-neutral-500/40 rounded-full blur-[0.5px]"></div>
     </div>

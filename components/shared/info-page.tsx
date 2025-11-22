@@ -88,8 +88,7 @@ const InfoPage = () => {
           title: getText('info_returns_process_title', 'Как оформить возврат'),
           items: [
             getText('info_returns_process_1', 'Напишите нам на почту returns@jacketstore.ru'),
-
-getText('info_returns_process_2', 'Укажите номер заказа и причину возврата'),
+            getText('info_returns_process_2', 'Укажите номер заказа и причину возврата'),
             getText('info_returns_process_3', 'Мы вышлем инструкцию по отправке')
           ]
         }
@@ -160,7 +159,7 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
           title: getText('info_care_down_title', 'Пуховые куртки'),
           items: [
             getText('info_care_down_1', 'Стирка в деликатном режиме со специальными средствами'),
-            getText('info_care_down_2', 'Сушка с теннисными мячиками для расправления пуха'),
+            getText('info_care_down_2', 'Сушка с теннисными мячиками для расправления пухa'),
             getText('info_care_down_3', 'Хранение в расправленном виде')
           ]
         }
@@ -171,21 +170,20 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
   const renderContent = (section: any) => {
     if (section.content) {
       return (
-        <div className="max-w-none text-gray-700 leading-relaxed">
+        <div className="max-w-none text-gray-700 leading-relaxed text-sm lg:text-base">
           {section.content.split('\n').map((paragraph: string, index: number) => {
             if (paragraph.startsWith('## ')) {
               return (
-                <h3 key={index} className="text-lg font-semibold text-black mt-6 mb-4 first:mt-0">
+                <h3 key={index} className="text-base lg:text-lg font-semibold text-black mt-4 lg:mt-6 mb-3 lg:mb-4 first:mt-0">
                   {paragraph.replace('## ', '')}
-
-</h3>
+                </h3>
               );
             }
             if (paragraph.startsWith('1. ') || paragraph.startsWith('2. ') || paragraph.startsWith('3. ')) {
               return (
                 <div key={index} className="flex items-start mb-2">
-                  <span className="text-black font-medium min-w-6">{paragraph.split('.')[0]}.</span>
-                  <span className="text-gray-700">{paragraph.split('. ').slice(1).join('. ')}</span>
+                  <span className="text-black font-medium min-w-5 lg:min-w-6 text-sm lg:text-base">{paragraph.split('.')[0]}.</span>
+                  <span className="text-gray-700 text-sm lg:text-base">{paragraph.split('. ').slice(1).join('. ')}</span>
                 </div>
               );
             }
@@ -193,7 +191,7 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
               return <br key={index} />;
             }
             return (
-              <p key={index} className="mb-4 last:mb-0 text-gray-700">
+              <p key={index} className="mb-3 lg:mb-4 last:mb-0 text-gray-700 text-sm lg:text-base">
                 {paragraph}
               </p>
             );
@@ -204,15 +202,15 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
 
     if (section.features) {
       return (
-        <div className="space-y-6">
-          <div className="space-y-6">
+        <div className="space-y-4 lg:space-y-6">
+          <div className="space-y-4 lg:space-y-6">
             {section.features.map((feature: any, index: number) => (
               <div key={index}>
-                <h3 className="font-semibold text-black mb-3 text-lg">{feature.title}</h3>
-                <ul className="space-y-2">
+                <h3 className="font-semibold text-black mb-2 lg:mb-3 text-base lg:text-lg">{feature.title}</h3>
+                <ul className="space-y-1 lg:space-y-2">
                   {feature.items.map((item: string, itemIndex: number) => (
-                    <li key={itemIndex} className="text-gray-700 flex items-start">
-                      <span className="text-black mr-3 mt-1">•</span>
+                    <li key={itemIndex} className="text-gray-700 flex items-start text-sm lg:text-base">
+                      <span className="text-black mr-2 lg:mr-3 mt-1 flex-shrink-0">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -221,8 +219,8 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
             ))}
           </div>
           {section.note && (
-            <div className="bg-gray-50 border-l-4 border-gray-300 pl-4 py-3">
-              <p className="text-gray-700 italic">{section.note}</p>
+            <div className="bg-gray-50 border-l-4 border-gray-300 pl-3 lg:pl-4 py-2 lg:py-3 mt-3 lg:mt-4">
+              <p className="text-gray-700 italic text-sm lg:text-base">{section.note}</p>
             </div>
           )}
         </div>
@@ -235,68 +233,68 @@ getText('info_returns_process_2', 'Укажите номер заказа и п�
       <Head>
         <title>{getText('info_page_title', 'Информация | Магазин мужских курток')}</title>
         <meta name="description" content={getText('info_page_description', 'Вся информация о магазине, доставке, возврате и качестве')} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <div className="min-h-screen bg-white flex flex-col mt-15">
-        <main className="flex-grow py-12">
-          <div className="container px-8 max-w-none">
-            <div className="text-center mb-16">
-              <h1 className="text-4xl font-bold text-black mb-4">
+        <main className="flex-grow py-6 lg:py-12">
+          <div className="container px-4 sm:px-6 lg:px-8 max-w-none">
+            <div className="text-center mb-8 lg:mb-16">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3 lg:mb-4">
                 {getText('info_hero_title', 'Вся информация')}
               </h1>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-2">
                 {getText('info_hero_subtitle', 'Узнайте больше о нашем магазине, условиях доставки, возврата и качестве материалов')}
               </p>
             </div>
 
-            <div className="space-y-16">
+            <div className="space-y-8 lg:space-y-16">
               {sections.map((section, index) => (
-
-<section 
+                <section 
                   key={section.id}
                   className="scroll-mt-8"
                 >
-                  <div className="flex items-start mb-8">
-                    <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-lg mr-4">
-                      <span className="text-xl">{section.icon}</span>
+                  <div className="flex items-start mb-4 lg:mb-8">
+                    <div className="flex items-center justify-center w-8 h-8 lg:w-12 lg:h-12 bg-gray-100 rounded-lg mr-3 lg:mr-4 flex-shrink-0">
+                      <span className="text-base lg:text-xl">{section.icon}</span>
                     </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-black mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-xl sm:text-2xl font-bold text-black mb-2 break-words">
                         {section.title}
                       </h2>
                       <div className="w-12 h-0.5 bg-black"></div>
                     </div>
                   </div>
                   
-                  <div className="ml-16">
+                  <div className="ml-0 lg:ml-16">
                     {renderContent(section)}
                   </div>
 
                   {index < sections.length - 1 && (
-                    <div className="mt-12 pt-8 border-t border-gray-100"></div>
+                    <div className="mt-6 lg:mt-12 pt-6 lg:pt-8 border-t border-gray-100"></div>
                   )}
                 </section>
               ))}
             </div>
 
-            <div className="mt-20 text-center">
-              <div className="bg-gray-50 border border-gray-200 p-8">
-                <h2 className="text-2xl font-bold text-black mb-4">
+            <div className="mt-12 lg:mt-20 text-center">
+              <div className="bg-gray-50 border border-gray-200 p-4 lg:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-black mb-3 lg:mb-4">
                   {getText('info_cta_title', 'Остались вопросы?')}
                 </h2>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                <p className="text-gray-600 mb-4 lg:mb-6 max-w-md mx-auto text-sm lg:text-base px-2">
                   {getText('info_cta_description', 'Наша команда поддержки всегда готова помочь вам с выбором и ответить на любые вопросы')}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
                   <Link 
                     href="/contacts"
-                    className="bg-black text-white px-8 py-3 rounded-none font-medium hover:bg-gray-800 transition-colors duration-200 border border-black inline-block"
+                    className="bg-black text-white px-6 lg:px-8 py-2 lg:py-3 rounded-none font-medium hover:bg-gray-800 transition-colors duration-200 border border-black inline-block text-sm lg:text-base"
                   >
                     {getText('info_cta_button_contact', 'Написать нам')}
                   </Link>
                   <a 
                     href="tel:+78001234567"
-                    className="bg-white text-black px-8 py-3 rounded-none font-medium hover:bg-gray-50 transition-colors duration-200 border border-gray-300 inline-block"
+                    className="bg-white text-black px-6 lg:px-8 py-2 lg:py-3 rounded-none font-medium hover:bg-gray-50 transition-colors duration-200 border border-gray-300 inline-block text-sm lg:text-base"
                   >
                     {getText('info_cta_button_phone', '8 (800) 123-45-67')}
                   </a>

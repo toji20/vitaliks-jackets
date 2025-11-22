@@ -12,43 +12,36 @@ export const MusicVisualizerIcon: React.FC<MusicVisualizerIconProps> = ({ classN
   const [isAudioUnlocked, setIsAudioUnlocked] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const unlockAttemptRef = useRef(0)
-
   useEffect(() => {
     const unlockAudio = async () => {
       if (!audioRef.current || isAudioUnlocked || unlockAttemptRef.current > 5) return
 
       try {
-        // Создаем временный аудио контекст для разблокировки
         const AudioContext = window.AudioContext || (window as any).webkitAudioContext
         const audioContext = new AudioContext()
         
-        // Ждем пока контекст будет готов
         if (audioContext.state === 'suspended') {
           await audioContext.resume()
         }
 
-        // Пробуем запустить наш аудио элемент
         await audioRef.current.play()
         setIsAudioUnlocked(true)
         setIsPlaying(true)
         localStorage.setItem('musicPlaying', 'true')
         console.log('Audio successfully unlocked!')
         
-        // Закрываем временный контекст
         await audioContext.close()
         
       } catch (error) {
         unlockAttemptRef.current++
         console.log(`Unlock attempt ${unlockAttemptRef.current} failed`)
         
-        // Пробуем еще раз через секунду
         if (unlockAttemptRef.current <= 5) {
           setTimeout(unlockAudio, 1000)
         }
       }
     }
 
-    // Более агрессивное отслеживание взаимодействий
     const events = [
       'click', 'touchstart', 'mousedown', 'mouseup', 'mousemove',
       'keydown', 'keyup', 'scroll', 'wheel', 'touchmove'
@@ -65,7 +58,6 @@ export const MusicVisualizerIcon: React.FC<MusicVisualizerIconProps> = ({ classN
       })
     })
 
-    // Также пробуем разблокировать при загрузке, если пользователь уже был на сайте
     const savedState = localStorage.getItem('musicPlaying')
     if (savedState === 'true') {
       setTimeout(unlockAudio, 500)
@@ -135,7 +127,6 @@ export const MusicVisualizerIcon: React.FC<MusicVisualizerIconProps> = ({ classN
           ))}
         </div>
 
-        {/* Показываем индикатор загрузки если музыка еще не разблокирована */}
         {!isAudioUnlocked && (
           <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-yellow-400 opacity-70 animate-pulse" />
         )}

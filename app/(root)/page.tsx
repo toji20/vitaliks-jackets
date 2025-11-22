@@ -1,6 +1,7 @@
 import { Bg } from "@/components/shared/bg";
 import { Catalog } from "@/components/shared/cards-page";
 import { Header } from "@/components/shared/header";
+import { MainCards } from "@/components/shared/main-cards";
 import { NavBg } from "@/components/shared/nav-bg";
 import { VitalikBanner } from "@/components/shared/vitalik-banner";
 import { prisma } from "@/prisma/prisma-client";

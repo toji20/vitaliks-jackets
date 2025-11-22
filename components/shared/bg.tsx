@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import '@/styles/main-bg.css'
@@ -21,9 +21,20 @@ export const Bg: React.FC<React.PropsWithChildren<Props>> = ({
   subtitle = 'Качественные куртки на любой сезон'
 }) => {
     const [isHovered, setIsHovered] = useState(false);
-    
+    useEffect(() => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {            
+            const timer = setTimeout(() => {
+                setIsHovered(true);
+            }, 1000);
+            
+            return () => clearTimeout(timer);
+        } else {
+            setIsHovered(true);
+        }
+    }, []);
     return (
-        <div className="overflow-hidden max-h-[99vh]">
+        <div className="overflow-hidden max-h-[97vh]">
           <section className="relative w-full min-h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
             <div 
                 className={cn(

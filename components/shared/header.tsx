@@ -20,12 +20,11 @@ export const Header: React.FC<React.PropsWithChildren<Props>> = ({ className, ch
     const { items, removeCartItem, totalAmount } = useCart();
     const cartRef = useRef<HTMLDivElement>(null);
     
-    // Определяем мобильное устройство
     const [isMobile, setIsMobile] = useState(false);
     
     useEffect(() => {
         const checkMobile = () => {
-            setIsMobile(window.innerWidth < 1024); // lg breakpoint
+            setIsMobile(window.innerWidth < 1024); 
         };
         
         checkMobile();
@@ -59,7 +58,6 @@ export const Header: React.FC<React.PropsWithChildren<Props>> = ({ className, ch
         };
     }, [isCartOpen]);
 
-    // Отключение скролла при открытом мобильном меню
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden'
@@ -80,20 +78,16 @@ export const Header: React.FC<React.PropsWithChildren<Props>> = ({ className, ch
 
     const toggleCart = () => {
         if (isMobile) {
-            // На мобильных устройствах сразу переходим в checkout
             window.location.href = '/checkout';
         } else {
-            // На десктопе открываем мини-корзину
             setIsCartOpen(!isCartOpen);
         }
     }
 
     const handleCartClick = () => {
         if (isMobile) {
-            // На мобильных устройствах сразу переходим в checkout
             window.location.href = '/checkout';
         } else {
-            // На десктопе открываем мини-корзину
             setIsCartOpen(!isCartOpen);
         }
     }
@@ -105,7 +99,6 @@ export const Header: React.FC<React.PropsWithChildren<Props>> = ({ className, ch
         { name: 'Осенние', href: '/autumn-jackets' },
     ];
 
-    // Don't show header on checkout page
     if (pathname === '/checkout') {
         return null;
     }
@@ -161,16 +154,13 @@ const getTextColor = (isHover = false) => {
 
     return (
         <>
-            {/* Main Header */}
             <header className={cn(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
                 getHeaderBackground(),
                 className)}>
                 <div className="w-full mx-auto lg:py-2 py-0 lg:px-10 px-5">
                     <div className="flex items-center justify-between h-16">
-                        {/* Левая часть с бургер-меню и логотипом */}
                         <div className='flex items-center gap-4 lg:gap-20'>
-                            {/* Бургер-меню для мобильных устройств */}
                             <button 
                                 className={cn(
                                     "lg:hidden p-2 transition-colors duration-200",
@@ -186,7 +176,6 @@ const getTextColor = (isHover = false) => {
                                 )}
                             </button>
 
-                            {/* Логотип */}
                             <Link href="/" className="flex-shrink-0 lg:mr-40 xl:mr-0">
                             {
                                         pathname !== '/' ? (
@@ -198,7 +187,6 @@ const getTextColor = (isHover = false) => {
                             </Link>
                         </div>
 
-                        {/* Навигация для десктопа */}
                         <nav className="hidden lg:flex items-center gap-8 ml-[-48%]">
                             {navItems.map((item) => (
                                 <Link
@@ -215,7 +203,6 @@ const getTextColor = (isHover = false) => {
                             ))}
                         </nav>
 
-                        {/* Правая часть с иконками */}
                         <div className="flex items-center gap-4">
                             <Link 
                                 href="/catalog" 
@@ -238,13 +225,11 @@ const getTextColor = (isHover = false) => {
                                 <span className="text-sm font-medium">Контакты</span>
                             </Link>
                             
-                            {/* Корзина - на мобильных сразу ведет в checkout */}
                             <div 
                                 className="relative"
                                 ref={cartRef}
                             >
                                 {isMobile ? (
-                                    // На мобильных - просто ссылка на checkout
                                     <Link
                                         href="/checkout"
                                         className={cn(
@@ -263,7 +248,6 @@ const getTextColor = (isHover = false) => {
                                         )}
                                     </Link>
                                 ) : (
-                                    // На десктопе - кнопка с выпадающей корзиной
                                     <>
                                         <button 
                                             onClick={handleCartClick}
@@ -365,7 +349,6 @@ const getTextColor = (isHover = false) => {
                 </div>
             </header>
 
-            {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
                 <div 
                     className="fixed inset-0 bg-black opacity-50 z-51 lg:hidden overflow-hidden w-full block"
@@ -373,7 +356,6 @@ const getTextColor = (isHover = false) => {
                 />
             )}
 
-            {/* Mobile Menu Sidebar - теперь слева */}
             <div className={cn(
                 'fixed top-0 left-0 h-full w-4/5 max-w-sm z-52 lg:hidden transition-transform duration-300 ease-in-out transform',
                 isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
@@ -384,15 +366,15 @@ const getTextColor = (isHover = false) => {
                         ? 'bg-black backdrop-blur-sm' 
                         : 'bg-white'
                 )}>
-                    {/* Header with close button */}
                     <div className="flex items-center justify-between p-5">
+                    <Link href={'/'}>
                     {
                      pathname !== '/' ? (
                     <img src="/vitalik-logo-white.png" alt="" className='md:w-30 w-25'/>
                     ) : (
                     <img src="/vitalik-logo.png" alt="" className='md:w-30 w-25'/>
                     )
-                                    }
+                    }</Link>
                         <button 
                             onClick={toggleMobileMenu}
                             className={cn(
@@ -405,7 +387,6 @@ const getTextColor = (isHover = false) => {
                         </button>
                     </div>
 
-{/* Navigation items */}
                     <nav className="flex-1 p-6">
                         <div className="flex flex-col gap-6">
                             {navItems.map((item) => (
@@ -437,7 +418,6 @@ const getTextColor = (isHover = false) => {
                         </div>
                     </nav>
 
-                    {/* Footer */}
                     <div className={cn(
                         "p-6 border-t",
                         pathname === '/' ? "border-white/20" : "border-gray-200"

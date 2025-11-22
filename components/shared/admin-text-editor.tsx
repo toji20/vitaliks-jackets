@@ -138,7 +138,6 @@ export const TextEditor: React.FC<React.PropsWithChildren<Props>> = ({ }) => {
 
   return ( 
     <div className="space-y-6">
-      {/* Статистика и поиск */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
           <div className="text-2xl font-bold text-blue-600">{texts.length}</div>
@@ -160,7 +159,6 @@ export const TextEditor: React.FC<React.PropsWithChildren<Props>> = ({ }) => {
         </div>
       </div>
 
-      {/* Панель управления */}
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between mb-6">
           <div>
@@ -234,7 +232,6 @@ export const TextEditor: React.FC<React.PropsWithChildren<Props>> = ({ }) => {
         )}
       </div>
 
-      {/* Список текстов */}
       <div className="space-y-4">
         {filteredTexts.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
@@ -344,7 +341,6 @@ export const TextEditor: React.FC<React.PropsWithChildren<Props>> = ({ }) => {
         )}
       </div>
 
-      {/* Пагинация или подсказка */}
       {filteredTexts.length > 10 && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
           <p className="text-blue-800 text-sm">

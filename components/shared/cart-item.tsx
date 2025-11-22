@@ -1,4 +1,3 @@
-// components/shared/cart-item.tsx
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { TrashIcon } from 'lucide-react';
@@ -40,7 +39,6 @@ export const CartItem: React.FC<React.PropsWithChildren<Props>> = ({
       },
       className
     )}>
-      {/* Мобильная версия - вертикальная */}
       <div className='lg:hidden'>
         <div className='flex items-start gap-3 mb-3'>
           <div className='w-20 h-28 bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0'>
@@ -82,7 +80,6 @@ export const CartItem: React.FC<React.PropsWithChildren<Props>> = ({
         </div>
       </div>
 
-      {/* Десктопная версия - горизонтальная */}
       <div className='hidden lg:flex lg:items-center lg:gap-4 lg:flex-1'>
         <div className='w-20 h-28 bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0'>
           <img 

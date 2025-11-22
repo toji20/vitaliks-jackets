@@ -52,7 +52,6 @@ export const SizesItem: React.FC<Props> = ({
                     "drop-shadow-sm"
                 ],
                 
-                // Available text
                 !active && !disabled && [
                     "text-gray-700 group-hover:text-gray-900"
                 ],

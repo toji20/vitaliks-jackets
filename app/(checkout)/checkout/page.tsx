@@ -1,4 +1,3 @@
-// app/checkout/page.tsx
 'use client'
 import { Cart } from '@/components/shared/cart';
 import { Form } from '@/components/shared/form-components/form';
@@ -41,7 +40,6 @@ export default function CheckoutPage() {
   return (
     <section className='catalog-page bg-white min-h-screen'>
       <FormProvider {...form}>
-        {/* Мобильный хедер */}
         <div className='lg:hidden bg-white border-b border-gray-200 px-4 py-4'>
           <div className='flex items-center justify-between w-full'>
             <Link 
@@ -67,7 +65,6 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* Десктопный хедер */}
         <div className='hidden lg:block w-full mx-auto px-8 pt-11'>
           <div className='flex items-center justify-between mb-16'>
             <Link 
@@ -93,12 +90,9 @@ export default function CheckoutPage() {
           </div>
         </div>
         
-        {/* Основной контент */}
         <div className='w-full pb-10'>
-          {/* Мобильная версия */}
           <div className='lg:hidden'>
             <div className='grid grid-cols-1'>
-              {/* Корзина */}
               <div className='border-b border-gray-200'>
                 <div className='bg-white p-4'>
                   <Cart
@@ -109,7 +103,6 @@ export default function CheckoutPage() {
                 </div>
               </div>
               
-              {/* Форма */}
               <div className='bg-white'>
                 <div className='p-4'>
                   <form onSubmit={form.handleSubmit(onSubmit)} className='h-full'>
@@ -124,7 +117,6 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* Десктопная версия */}
           <div className='hidden lg:block w-full mx-auto px-8'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
               <div>

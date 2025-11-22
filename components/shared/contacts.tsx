@@ -1,4 +1,3 @@
-// app/contacts/page.tsx
 'use client'
 
 import React from 'react';
@@ -122,7 +121,6 @@ export default function ContactsPage() {
 
   return (
     <section className='catalog-page bg-stone-50 min-h-screen pt-14 sm:pt-14 lg:pt-18'>
-      {/* Хедер - без боковых отступов на мобильных */}
       <div className='bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4 sm:py-6'>
         <div className='flex items-center justify-between max-w-7xl mx-auto w-full'>
           <Link 
@@ -148,13 +146,9 @@ export default function ContactsPage() {
         </div>
       </div>
 
-      {/* Основной контент - без боковых отступов на мобильных */}
       <div className='w-full'>
-        {/* Контактная информация и карта - сетка без отступов на мобильных */}
         <div className='grid grid-cols-1 lg:grid-cols-2'>
-          {/* Левая колонка - контакты */}
           <div className='border-r-0 lg:border-r border-gray-200'>
-            {/* Контактная информация */}
             <div className='bg-white border-b border-gray-200 p-4 sm:p-6'>
               <h2 className='text-base sm:text-lg font-semibold text-gray-900 mb-4 sm:mb-6'>
                 {getText('contact_info_title', 'СВЯЖИТЕСЬ С НАМИ')}
@@ -195,7 +189,6 @@ export default function ContactsPage() {
               </div>
             </div>
 
-            {/* Социальные сети */}
             <div className='bg-white border-b border-gray-200 p-4 sm:p-6 lg:border-b-0'>
               <h3 className='font-semibold text-gray-900 mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wide'>
                 {getText('social_title', 'МЫ В СОЦСЕТЯХ')}
@@ -220,9 +213,7 @@ export default function ContactsPage() {
             </div>
           </div>
 
-          {/* Правая колонка - карта и FAQ */}
           <div>
-            {/* Карта */}
             <div className='bg-white border-b border-gray-200 p-4 sm:p-6'>
               <h3 className='font-semibold text-gray-900 mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wide'>
                 {getText('map_title', 'КАК НАС НАЙТИ')}
@@ -241,7 +232,6 @@ export default function ContactsPage() {
               </div>
             </div>
 
-            {/* FAQ Section */}
             <div className='bg-white p-4 sm:p-6'>
               <h3 className='font-semibold text-gray-900 mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wide'>
                 {getText('faq_title', 'ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ')}
@@ -263,8 +253,6 @@ export default function ContactsPage() {
             </div>
           </div>
         </div>
-
-        {/* Call to Action - без боковых отступов на мобильных */}
         <div className='bg-black text-white px-4 sm:px-6 lg:px-8 py-6 sm:py-8'>
           <div className='max-w-7xl mx-auto text-center'>
             <h2 className='text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3'>

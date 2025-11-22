@@ -1,4 +1,3 @@
-// components/shared/catalog-page.tsx
 'use client'
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
@@ -95,7 +94,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   const filteredAndSortedJackets = useMemo(() => {
     let result = [...jackets];
 
-    // Фильтрация по категориям
     if (selectedCategories.length > 0) {
       result = result.filter(jacket =>
         selectedCategories.includes(jacket.categoryId)
@@ -106,7 +104,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       Number(jacket.price) >= priceRange[0] && Number(jacket.price) <= priceRange[1]
     );
 
-    // Сортировка
     switch (sortBy) {
       case 'price':
         result.sort((a, b) => Number(a.price) - Number(b.price));

@@ -243,7 +243,6 @@ const onSubmit = async (data: TcreateJacketShema) => {
   return (
     <FormProvider {...formMethods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Навигация по табам */}
         <div className="border-b border-gray-200">
           <nav className="-mb-px flex space-x-8">
             {tabs.map((tab) => {
@@ -267,7 +266,6 @@ const onSubmit = async (data: TcreateJacketShema) => {
           </nav>
         </div>
 
-        {/* Базовая информация */}
         {activeTab === 'basic' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -326,7 +324,6 @@ type="text"
               </div>
             </div>
 
-            {/* Главное изображение */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Главное изображение куртки *
@@ -363,7 +360,6 @@ type="text"
               )}
             </div>
 
-            {/* Характеристики */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
 {[
@@ -388,7 +384,6 @@ type="text"
               ))}
             </div>
 
-            {/* Описание */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Описание
@@ -403,7 +398,6 @@ type="text"
           </div>
         )}
 
-        {/* Цвета */}
         {activeTab === 'colors' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -444,7 +438,6 @@ type="text"
                     </button>
                   </div>
 
-                  {/* Название цвета */}
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Название цвета *
@@ -506,7 +499,6 @@ placeholder="Например: Черный, Синий, Красный"
           </div>
         )}
 
-        {/* Размеры */}
         {activeTab === 'sizes' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -573,7 +565,6 @@ placeholder="Например: Черный, Синий, Красный"
           </div>
         )}
 
-        {/* Кнопки отправки */}
         <div className="flex gap-4 pt-6 border-t border-gray-200">
           <button
             type="submit"

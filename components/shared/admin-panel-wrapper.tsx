@@ -36,7 +36,6 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-4">
-        {/* Заголовок и навигация */}
 
 <div className="mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
@@ -50,7 +49,6 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
             </div>
           </div>
 
-          {/* Навигационные табы */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2">
             <div className="flex flex-col sm:flex-row gap-2 overflow-x-auto">
               {tabs.map((tab) => (
@@ -79,7 +77,6 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
           </div>
         </div>
 
-        {/* Контент в зависимости от выбранной вкладки */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 min-h-[600px]">
           {currentTab === 'texts' && (
             <div>
@@ -167,7 +164,6 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
           )}
         </div>
 
-        {/* Быстрые действия */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <button
             onClick={() => setCurrentTab('add')}

@@ -63,11 +63,9 @@ export const JacketPage: React.FC<Props> = ({
   const [copyTextMess, setCopyTextMess] = useState(false);
   const { addCartItem, loading: cartLoading } = useCart();
 
-  // Фильтруем только активные цвета и размеры
   const enabledColors = colors.filter(color => color.disabled);
   const enabledSizes = sizes.filter(size => size.disabled);
 
-  // Получаем все изображения из выбранного цвета
   const getCurrentColorImages = () => {
     if (!selectedColor) return [];
     
@@ -83,14 +81,12 @@ export const JacketPage: React.FC<Props> = ({
 
   const allImages = getCurrentColorImages();
 
-  // Автоматически выбираем первый активный цвет при загрузке
   useEffect(() => {
     if (enabledColors.length > 0 && !selectedColor) {
       setSelectedColor(enabledColors[0]);
     }
   }, [enabledColors, selectedColor]);
 
-  // Эффект для автоматического скрытия уведомления
   useEffect(() => {
     if (copyTextMess) {
       const timer = setTimeout(() => {
@@ -106,12 +102,12 @@ export const JacketPage: React.FC<Props> = ({
   };
 
   const handleSizeClick = (size: Size) => {
-    if (!size.disabled) return; // Не позволяем выбирать отключенные размеры
+    if (!size.disabled) return;
     setSelectedSize(prev => prev?.id === size.id ? null : size);
   };
 
   const handleColorClick = (color: Color) => {
-    if (!color.disabled) return; // Не позволяем выбирать отключенные цвета
+    if (!color.disabled) return;
     setCurrentImageIndex(0);
     setSelectedColor(color);
   };
@@ -558,7 +554,7 @@ const closeZoom = () => {
   >
     <div 
       className='relative max-w-7xl max-h-full z-100'
-      onClick={(e) => e.stopPropagation()} // Предотвращает закрытие при клике на контент
+      onClick={(e) => e.stopPropagation()}
     >
       <button
         onClick={closeZoom}

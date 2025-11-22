@@ -85,7 +85,6 @@ export const JacketModalPage: React.FC<React.PropsWithChildren<Props>> = ({
 
             <p className={cn('jacket-modal__description', 'text-gray-700 leading-relaxed mb-6')}>{descr}</p>
 
-            {/* Size Selection */}
             <div className={cn('jacket-modal__size-section', 'mb-6')}>
               <h3 className={cn('jacket-modal__section-title', 'font-semibold text-gray-900 mb-4')}>Select Size</h3>
               <div className={cn('jacket-modal__sizes-grid', 'grid grid-cols-3 sm:grid-cols-4 gap-3 mb-2')}>
@@ -101,7 +100,7 @@ export const JacketModalPage: React.FC<React.PropsWithChildren<Props>> = ({
                   >
                     <SizesItem 
                       name={String(size.name)}
-                      active={selectedSize?.id === size.id} // Передаем активное состояние
+                      active={selectedSize?.id === size.id}
                     />
                   </button>
                 ))}

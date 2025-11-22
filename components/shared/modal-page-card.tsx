@@ -41,7 +41,6 @@ export const ModalJacketCard: React.FC<JacketCardProps> = ({ jacket, className }
 
         <div className='absolute bottom-0 left-0 right-0 p-2 md:p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent'>
           <div className='space-y-1 md:space-y-2 text-white'>
-            {/* Название */}
             <Link href={`/product/${jacket.id}`}>
               <h3 className={cn(
                 'font-semibold leading-tight line-clamp-2 hover:text-gray-300 transition-colors',

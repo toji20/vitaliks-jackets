@@ -135,7 +135,6 @@ export const mockJackets = [
 ];
 
 export const mockJacketItems = [
-  // Для кожаной куртки Classic (id: 1)
  {jacketItemId: 1, price:12000},
  {jacketItemId: 2, price:15000},
  {jacketItemId: 3, price:5000},
@@ -144,12 +143,11 @@ export const mockJacketItems = [
 ];
 
 export const mockSizes = [
-  // Размеры для всех курток
   {
     id: 1,
     name: 'XS',
-    price: null, // Цена берется из jacketItem
-    imageUrl: '', // Без фото как в вашем примере
+    price: null, 
+    imageUrl: '', 
     jacketId: 1,
   },
   {
@@ -276,19 +274,19 @@ export const mockSizes = [
 export const mockCarts = [
   {
     id: 1,
-    userId: 2, // Иван Петров
+    userId: 2, 
     token: 'cart_token_ivan_123',
     totalAmount: 17000,
   },
   {
     id: 2,
-    userId: null, // Гостевая корзина
+    userId: null, 
     token: 'cart_token_guest_456',
     totalAmount: 5000,
   },
   {
     id: 3,
-    userId: 3, // Мария Сидорова
+    userId: 3, 
     token: 'cart_token_maria_789',
     totalAmount: 28000,
   },
@@ -298,56 +296,55 @@ export const mockCartItems = [
   {
     id: 1,
     cartId: 1,
-    jacketItemId: 4, // Кожаная куртка Biker Черная
+    jacketItemId: 4,
     quantity: 1,
   },
   {
     id: 2,
     cartId: 1,
-    jacketItemId: 7, // Джинсовая куртка Vintage Синяя
+    jacketItemId: 7,
     quantity: 1,
   },
   {
     id: 3,
     cartId: 2,
-    jacketItemId: 7, // Джинсовая куртка Vintage Синяя
+    jacketItemId: 7,
     quantity: 1,
   },
   {
     id: 4,
     cartId: 3,
-    jacketItemId: 10, // Зимняя куртка Arctic Черная
+    jacketItemId: 10,
     quantity: 1,
   },
   {
     id: 5,
     cartId: 3,
-    jacketItemId: 13, // Спортивная куртка Runner Черная
+    jacketItemId: 13,
     quantity: 1,
   },
 ];
 
-// Связи между CartItem и Size (many-to-many)
 export const mockCartItemSizes = [
   {
     cartItemId: 1,
-    sizeId: 6, // Размер S для кожаной куртки Biker
+    sizeId: 6, 
   },
   {
     cartItemId: 2,
-    sizeId: 10, // Размер M для джинсовой куртки Vintage
+    sizeId: 10, 
   },
   {
     cartItemId: 3,
-    sizeId: 11, // Размер L для джинсовой куртки Vintage
+    sizeId: 11, 
   },
   {
     cartItemId: 4,
-    sizeId: 13, // Размер L для зимней куртки Arctic
+    sizeId: 13, 
   },
   {
     cartItemId: 5,
-    sizeId: 16, // Размер S для спортивной куртки Runner
+    sizeId: 16, 
   },
 ];
 
@@ -915,3 +912,91 @@ export const infoPageTexts = [
     category: 'cta'
   }
 ];
+
+export const footerTexts = [
+  {
+    key: 'footer_description',
+    content: 'Качественные куртки на любой сезон. Современный дизайн, премиальные материалы и доступные цены.',
+    category: 'footer'
+  },
+  {
+    key: 'footer_navigation_title',
+    content: 'Навигация',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_catalog',
+    content: 'Каталог',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_winter',
+    content: 'Зимние куртки',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_spring',
+    content: 'Весенние куртки',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_autumn',
+    content: 'Осенние куртки',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_contacts',
+    content: 'Контакты',
+    category: 'footer'
+  },
+  {
+    key: 'footer_nav_info',
+    content: 'Информация для покупателя',
+    category: 'footer'
+  },
+  {
+    key: 'footer_contacts_title',
+    content: 'Контакты',
+    category: 'footer'
+  },
+  {
+    key: 'footer_phone',
+    content: '+7 (800) 123-45-67',
+    category: 'footer'
+  },
+  {
+    key: 'footer_email',
+    content: 'info@jacketstore.ru',
+    category: 'footer'
+  },
+  {
+    key: 'footer_address',
+    content: 'г. Москва, ул. Примерная, д. 123',
+    category: 'footer'
+  },
+  {
+    key: 'footer_hours_title',
+    content: 'Время работы',
+    category: 'footer'
+  },
+  {
+    key: 'footer_hours_weekdays',
+    content: 'Пн-Пт: 9:00 - 21:00',
+    category: 'footer'
+  },
+  {
+    key: 'footer_hours_weekends',
+    content: 'Сб-Вс: 10:00 - 20:00',
+    category: 'footer'
+  },
+  {
+    key: 'footer_copyright',
+    content: 'Все права защищены.',
+    category: 'footer'
+  },
+  {
+    key: 'social_twitter_url',
+    content: 'https://twitter.com/jacketstore',
+    category: 'social'
+  }
+]

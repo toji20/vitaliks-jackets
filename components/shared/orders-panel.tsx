@@ -1,4 +1,3 @@
-// components/shared/admin-orders-panel.tsx
 'use client'
 
 import { changeStatusOrder, deleteOrder } from "@/app/api/actions/actions";
@@ -20,16 +19,13 @@ const renderOrderItems = (itemsJson: string) => {
         return (
             <div className="space-y-3">
                 {items.map((item, index) => {
-                    // Получаем информацию о товаре
                     const jacketName = item.jacketItem?.jacket?.name || 'Неизвестный продукт';
                     const price = item.jacketItem?.jacket?.price | 0;
                     const quantity = item.quantity || 1;
                     
-                    // Получаем информацию о цветах и размерах
                     const colors = item.colors || item.jacketItem?.colors || [];
                     const sizes = item.sizes || [];
                     
-                    // Формируем строку с цветами и размерами
                     const colorInfo = colors.length > 0 
                         ? `Цвет: ${colors.map((color: Color) => color.name).join(', ')}`
                         : '';
@@ -63,7 +59,6 @@ const renderOrderItems = (itemsJson: string) => {
                         </div>
                     );
                 })}
-                {/* Общая сумма */}
                 <div className="flex justify-between items-center pt-3 border-t border-gray-300 mt-2">
                     <span className="font-semibold text-gray-900">Общая сумма заказа:</span>
                     <span className="font-bold text-lg text-gray-900">
@@ -138,7 +133,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-4">
-        {/* Заголовок и навигация */}
         <div className="mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
             <div>
@@ -151,7 +145,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
             </div>
           </div>
 
-          {/* Навигационные табы по статусам */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2">
             <div className="flex flex-col sm:flex-row gap-2 overflow-x-auto">
               {statusTabs.map((tab) => (
@@ -178,7 +171,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
           </div>
         </div>
 
-        {/* Список заказов */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 min-h-[600px]">
           <div className="p-6 border-b border-gray-200">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -223,7 +215,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
                       </div>
                     </div>
 
-                    {/* Информация о клиенте */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                       <div>
                         <p className="text-sm text-gray-600">Клиент</p>
@@ -243,13 +234,11 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
                       </div>
                     </div>
 
-                    {/* Адрес доставки */}
                     <div className="mb-6">
                       <p className="text-sm text-gray-600 mb-2">Адрес доставки</p>
                       <p className="text-gray-900">{order.address}</p>
                     </div>
 
-                    {/* Содержимое заказа */}
                     <div className="mb-6">
                       <p className="text-sm text-gray-600 mb-3">Состав заказа:</p>
                       <div className="bg-gray-50 rounded-lg p-4">
@@ -257,7 +246,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
                       </div>
                     </div>
 
-                    {/* Действия */}
                     <div className="flex flex-col sm:flex-row gap-3 justify-end">
                       <select
                         value={order.status}
@@ -283,7 +271,6 @@ export const AdminOrdersPanel: React.FC<AdminOrdersPanelProps> = ({
           </div>
         </div>
 
-        {/* Быстрые действия */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <button
             onClick={() => setCurrentTab('PENDING')}

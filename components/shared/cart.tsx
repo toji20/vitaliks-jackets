@@ -1,4 +1,3 @@
-// components/shared/cart.tsx
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { CartStateItem } from '@/lib/get-cart-details';

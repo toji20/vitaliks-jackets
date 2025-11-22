@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-// Схемы для вложенных объектов
 export const colorSchema = z.object({
   name: z.string().min(1, "Название цвета обязательно"),
   imageUrl: z.string().url("Должна быть валидная ссылка"),
@@ -15,7 +14,6 @@ export const sizeSchema = z.object({
   imageUrl: z.string().url("Должна быть валидная ссылка").optional().nullable(),
 });
 
-// Основная схема для создания куртки
 export const createJacketSchema = z.object({
   name: z.string().min(1, "Название обязательно"),
   imageUrl: z.string().url("Должна быть валидная ссылка"),
@@ -32,7 +30,6 @@ export const createJacketSchema = z.object({
   
   categoryId: z.number().int().positive("ID категории обязателен"),
   
-  // Массивы цветов и размеров
   colors: z.array(colorSchema).min(1, "Добавьте хотя бы один цвет"),
   sizes: z.array(sizeSchema).min(1, "Добавьте хотя бы один размер"),
 });

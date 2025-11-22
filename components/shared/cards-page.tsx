@@ -23,7 +23,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
     '/new-jacket-3.png',
   ];
 
-  // Определение типа устройства
   useEffect(() => {
     const checkDevice = () => {
       const width = window.innerWidth;
@@ -86,7 +85,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
     return index;
   };
 
-  // Мобильная версия - простой карусель
   if (isMobile) {
     return (
       <div 
@@ -113,7 +111,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
             </Link>
           </div>   
           
-          {/* Мобильная карусель */}
           <div className="relative mb-12">
             <div className="overflow-hidden  shadow-2xl mx-auto max-w-sm">
               <img 
@@ -127,7 +124,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
               </div>
             </div>
             
-            {/* Кнопки навигации для мобильных */}
             <div className="flex justify-between items-center mt-6 px-4">
               <button 
                 onClick={prevImage}
@@ -183,7 +179,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
     );
   }
 
-  // Планшетная версия
   if (isTablet) {
     return (
       <div 
@@ -235,7 +230,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
             </button>
             
             <div className='flex gap-4 items-center relative h-80 w-full mb-12'>
-              {/* Боковые изображения для планшета */}
               <div className={cn(
                 "absolute left-4 transition-all duration-500 ease-out transform cursor-pointer w-1/3",
                 isTransitioning ? "opacity-60 scale-95 -translate-x-2" : "opacity-70 scale-95",
@@ -251,7 +245,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
                 </div>
               </div>
               
-              {/* Центральное изображение */}
               <div className={cn(
                 "absolute left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-out z-10 w-2/5",
                 isTransitioning ? "scale-100 opacity-100" : "scale-105 opacity-100",
@@ -269,7 +262,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
                 </div>
               </div>
               
-              {/* Правое изображение */}
               <div className={cn(
                 "absolute right-4 transition-all duration-500 ease-out transform cursor-pointer w-1/3",
                 isTransitioning ? "opacity-60 scale-95 translate-x-2" : "opacity-70 scale-95",
@@ -333,7 +325,6 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
     );
   }
 
-  // Десктопная версия (оригинальная)
   return (
     <div 
       className={cn('bg-stone-50 md:px-8 px-5 md:py-20 py-16 relative overflow-hidden', className)} 

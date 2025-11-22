@@ -1,4 +1,3 @@
-// components/shared/you-may-also-like.tsx
 'use client'
 
 import React from 'react';

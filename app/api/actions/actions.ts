@@ -15,7 +15,6 @@ export async function createOrder(data: CheckoutFormValues) {
         if (!cartToken) {
             throw new Error('Cart token not found');
         }
-        // Находим корзину по токену
         const userCart = await prisma.cart.findFirst({
             include: {
               user: true,
@@ -41,7 +40,6 @@ export async function createOrder(data: CheckoutFormValues) {
         if (userCart?.totalAmount === 0) {
             throw new Error('Cart is empty');
         }
-        // создаем заказ
         const order = await prisma.order.create({
             data: {
               token: cartToken,
@@ -112,7 +110,6 @@ export async function addJacket(data: TcreateJacketShema) {
         country: validatedData.country,
         care: validatedData.care,
         categoryId: validatedData.categoryId,
-        // Создаем связанные цвета
         colors: {
           create: validatedData.colors.map(color => ({
             name: color.name,
@@ -122,7 +119,6 @@ export async function addJacket(data: TcreateJacketShema) {
             imageUrlFour: color.imageUrlFour,
           }))
         },
-        // Создаем связанные размеры
         sizes: {
           create: validatedData.sizes.map(size => ({
             name: size.name,
@@ -169,7 +165,6 @@ export async function deleteJacket(id: number) {
         }
       }
     });
-    // Сначала удаляем связанные записи
     await prisma.color.deleteMany({
       where: { jacketId: id }
     });
@@ -182,7 +177,6 @@ export async function deleteJacket(id: number) {
       where: { jacketId: id }
     });
 
-    // Затем удаляем саму куртку
     await prisma.jacket.deleteMany({
       where: { id }
     });
@@ -197,6 +191,20 @@ export async function deleteJacket(id: number) {
       success: false, 
       message: 'Ошибка при удалении куртки' 
     };
+  }
+}
+
+export async function toggleJacketdisdisabled(id: number,disabled: boolean) {
+  try {
+    const jacket = await prisma.jacket.update({
+      where: { id: id },
+      data: {disabled }
+    })
+    
+    return { success: true, jacket }
+  } catch (error) {
+    console.error('Error toggling jacket:', error)
+    return { success: false, error: 'Failed to update jacket' }
   }
 }
 
