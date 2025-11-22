@@ -20,7 +20,7 @@ const oswald = Oswald({
 
 export const metadata: Metadata = {
   title: "Vitalik jackets",
-  description: "Строительная компания",
+  description: "Магазин мужских курток",
 };
 
 export default function HomeLayout({
@@ -30,7 +30,7 @@ export default function HomeLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" data-rh="true" href="/logo-vitalik.png" />
+      <link rel="icon" data-rh="true" href="/vitalik-logo-cut.png"/>
       <body
         className={`${oswald.variable} antialiased`}
       >
