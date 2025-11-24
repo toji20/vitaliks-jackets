@@ -9,9 +9,10 @@ import React from 'react';
 interface JacketCardProps {
   jacket: Jacket;
   className?: string;
+  viewMode?: string;
 }
 
-export const ModalJacketCard: React.FC<JacketCardProps> = ({ jacket, className }) => {
+export const ModalJacketCard: React.FC<JacketCardProps> = ({ jacket, className,viewMode }) => {
   const mainImage = jacket.imageUrl || '/fallback-image.jpg';
 
   return (
@@ -20,7 +21,7 @@ export const ModalJacketCard: React.FC<JacketCardProps> = ({ jacket, className }
       'md:hover:shadow-xl',
       className
     )}>
-      <div className='relative overflow-hidden bg-gray-50'>
+      <div className='relative overflow-hidden bg-gray-50 w-full'>
         <Link href={`/product/${jacket.id}`}>
           <div className='aspect-[3/5] lg:aspect-[3/4] relative overflow-hidden'>
             <img
@@ -102,26 +103,6 @@ export const ModalJacketCard: React.FC<JacketCardProps> = ({ jacket, className }
           </Link>
         </div>
       </div>
-
-      {className?.includes('flex') && (
-        <div className='flex-1 p-4 hidden md:block'>
-          <div className='space-y-2'>
-            <h3 className='text-lg font-semibold text-gray-900'>{jacket.name}</h3>
-            <p className='text-gray-600 text-sm line-clamp-3'>
-              {jacket.descr || 'Описание товара отсутствует'}
-            </p>
-            <div className='flex items-center justify-between'>
-              <span className='text-xl font-bold text-gray-900'>
-                {Number(jacket.price).toLocaleString('ru-RU')} ₽
-              </span>
-              <div className='flex items-center gap-2'>
-                <div className='w-2 h-2 bg-green-400 rounded-full' />
-                <span className='text-xs text-gray-500'>В наличии</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
