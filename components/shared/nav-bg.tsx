@@ -47,10 +47,9 @@ export const NavBg: React.FC<React.PropsWithChildren<Props>> = ({ className, chi
             <section className="relative w-full min-h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
                 <div 
                     className={cn(
-                        "absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out",
+                        "absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out container__main-bg",
                         isHovered ? "scale-105 brightness-110" : "scale-100 brightness-100"
                     )}
-                    style={{ backgroundImage: `url(${background})` }}
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />

@@ -1,14 +1,13 @@
-.nav-bg__container {
-    background-image: url('/nav-bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
+.container__main-bg {
+    background-image: url('/nav-bg-vt-jack.png');
 }
 
+@media (max-width: 400px) {
+    .container__main-bg {
+        background-image: url('/nav-bg-vt-jack-mob.png');
+    }
+    
+}
 .nav-bg__title {
     font-size: 38px;
     color: white;
