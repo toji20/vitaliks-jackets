@@ -2,7 +2,7 @@
     background-image: url('/nav-bg-vt-jack.png');
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     .container__main-bg {
         background-image: url('/nav-bg-vt-jack-mob.png');
     }

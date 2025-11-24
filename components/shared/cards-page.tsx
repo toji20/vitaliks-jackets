@@ -112,11 +112,11 @@ export const Catalog: React.FC<React.PropsWithChildren<Props>> = ({ className, i
           </div>   
           
           <div className="relative mb-12">
-            <div className="overflow-hidden  shadow-2xl mx-auto max-w-sm">
+            <div className="overflow-hidden shadow-xl mx-auto max-w-sm">
               <img 
                 src={images[currentImageIndex]} 
                 alt="Текущая новинка" 
-                className='w-full h-80 object-cover'
+                className='w-full h-100 object-cover'
               />
               <div className="absolute top-3 right-3 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
 
