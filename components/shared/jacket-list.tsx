@@ -6,10 +6,11 @@ import {
   deleteSize, 
   toggleColordisdisabled, 
   toggleSizedisdisabled,
-  toggleJacketdisdisabled 
+  toggleJacketdisdisabled,
+  changePrice // добавляем импорт
 } from "@/app/api/actions/actions"
 import { Color, Jacket, Size } from "@prisma/client"
-import { Edit3, Trash2, Eye, EyeOff, Palette, Ruler, Power } from "lucide-react"
+import { Edit3, Trash2, Eye, EyeOff, Palette, Ruler, Power, DollarSign } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import toast from "react-hot-toast"
@@ -42,7 +43,45 @@ interface Props {
 
 export const JacketList: React.FC<Props> = ({ jackets }) => {
   const [expandedJacket, setExpandedJacket] = useState<number | null>(null)
+  const [editingPrice, setEditingPrice] = useState<number | null>(null)
+  const [newPriceValue, setNewPriceValue] = useState<string>('')
+  const [isUpdatingPrice, setIsUpdatingPrice] = useState(false)
   const router = useRouter()
+
+  const handlePriceUpdate = async (jacketId: number, currentPrice: number) => {
+    if (!newPriceValue || isUpdatingPrice) return
+    
+    const newPrice = parseInt(newPriceValue)
+    if (isNaN(newPrice) || newPrice === currentPrice) {
+      setEditingPrice(null)
+      setNewPriceValue('')
+      return
+    }
+
+    setIsUpdatingPrice(true)
+    const result = await changePrice(jacketId, newPrice)
+    
+    if (result.success) {
+      toast.success('Цена успешно обновлена')
+      router.refresh()
+    } else {
+      toast.error(result.error || 'Ошибка при обновлении цены')
+    }
+    
+    setIsUpdatingPrice(false)
+    setEditingPrice(null)
+    setNewPriceValue('')
+  }
+
+  const startPriceEdit = (jacketId: number, currentPrice: number) => {
+    setEditingPrice(jacketId)
+    setNewPriceValue(currentPrice.toString())
+  }
+
+  const cancelPriceEdit = () => {
+    setEditingPrice(null)
+    setNewPriceValue('')
+  }
 
   const handleToggleJacket = async (jacketId: number, disabled: boolean) => {
     const result = await toggleJacketdisdisabled(jacketId, !disabled)
@@ -91,7 +130,7 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
     }
   }
 
-  const handleToggleSize = async (sizeId: number, disabled: boolean) => {
+const handleToggleSize = async (sizeId: number, disabled: boolean) => {
     const result = await toggleSizedisdisabled(sizeId, !disabled)
     if (result.success) {
       toast.success(`Размер ${!disabled ? 'включен' : 'отключен'}`)
@@ -134,8 +173,7 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
                 <div className="relative">
                   <img 
                     src={jacket.imageUrl}
-
-                  alt={jacket.name}
+                    alt={jacket.name}
                     className={`w-20 h-20 object-cover rounded-lg border transition-all ${
                       jacket.disabled ? 'grayscale' : ''
                     }`}
@@ -169,7 +207,60 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
                   <div className={`flex items-center gap-4 mt-2 text-sm ${
                     jacket.disabled ? 'text-gray-400' : 'text-gray-500'
                   }`}>
-                    <span>Цена: {jacket.price} ₽</span>
+                    <div className="flex items-center gap-2">
+                      <span>Цена:</span>
+                      {editingPrice === jacket.id ? (
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="number"
+                            value={newPriceValue}
+                            onChange={(e) => setNewPriceValue(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                handlePriceUpdate(jacket.id, Number(jacket.price))
+                              } else if (e.key === 'Escape') {
+                                cancelPriceEdit()
+                              }
+                            }}
+                            className="w-24 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            autoFocus
+                            disabled={isUpdatingPrice}
+                          />
+                          <button
+                            onClick={() => handlePriceUpdate(jacket.id, Number(jacket.price))}
+                            disabled={isUpdatingPrice}
+                            className="p-1 text-green-600 hover:text-green-800 disabled:opacity-50"
+                            title="Сохранить"
+                          >
+                            ✓
+                          </button>
+                          <button
+                            onClick={cancelPriceEdit}
+                            disabled={isUpdatingPrice}
+                            className="p-1 text-red-600 hover:text-red-800 disabled:opacity-50"
+                            title="Отмена"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">{jacket.price} ₽</span>
+                          <button
+                            onClick={() => startPriceEdit(jacket.id, Number(jacket.price))}
+                            disabled={Boolean(jacket.disabled) || isUpdatingPrice}
+                            className={`p-1 rounded transition-colors ${
+                              jacket.disabled 
+                                ? 'text-gray-400 cursor-not-allowed' 
+                                : 'text-blue-600 hover:text-blue-800 hover:bg-blue-50'
+                            }`}
+                            title="Изменить цену"
+                          >
+                            <DollarSign size={14} />
+                          </button>
+                        </div>
+                      )}
+                    </div>
                     <span>Материал: {jacket.material}</span>
                     <span>Сезон: {jacket.season}</span>
                   </div>
@@ -221,7 +312,6 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
           {expandedJacket === jacket.id && (
             <div className="border-t border-gray-200 p-6 bg-gray-50/50">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <Palette size={18} className="text-purple-600" />
@@ -297,7 +387,8 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
                   <div className="flex items-center gap-2 mb-4">
                     <Ruler size={18} className="text-blue-600" />
                     <h4 className="font-semibold text-gray-900">Размеры</h4>
-                    <span className={`px-2 py-1 text-xs rounded-full ${
+
+<span className={`px-2 py-1 text-xs rounded-full ${
                       jacket.sizes.filter(s => s.disabled).length > 0
                       ? 'bg-green-100 text-green-800' 
                         : 'bg-red-100 text-red-800'
@@ -375,8 +466,8 @@ export const JacketList: React.FC<Props> = ({ jackets }) => {
                     <span>Активных цветов: {jacket.colors.filter(c => c.disabled).length}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
 
+<div className="w-2 h-2 bg-red-500 rounded-full"></div>
                     <span>Отключенных цветов: {jacket.colors.filter(c => !c.disabled).length}</span>
                   </div>
                   <div className="flex items-center gap-2">

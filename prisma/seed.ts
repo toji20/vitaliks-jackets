@@ -1,13 +1,15 @@
+// seed.ts
 import { UserRole } from '@prisma/client';
 import { prisma } from './prisma-client';
 import { contactsPageTexts, infoPageTexts } from './constant/constant';
 import { hashSync } from 'bcrypt';
 
+// Константы с данными для сидинга
 const users = [
   {
     fullName: 'Test User',
     email: 'test@example.com',
-    password: '$2a$10$X8z5JZ7qQ7q5Q7q5Q7q5Qe',
+    password: '$2a$10$X8z5JZ7qQ7q5Q7q5Q7q5Qe', // хэшированный пароль
     role: UserRole.USER,
   }
 ];
@@ -1022,6 +1024,7 @@ await prisma.user.createMany({
   await prisma.textContent.createMany({
     data: infoPageTexts,
   })
+
 
   // Создаем категории
   await prisma.category.createMany({

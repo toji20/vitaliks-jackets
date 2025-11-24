@@ -365,3 +365,24 @@ export async function deleteCategory(id: number) {
     }
   }
 }
+export async function changePrice(id: number,newPrice: number) {
+  try {
+    await prisma.jacket.update({
+      where:{
+        id: id
+      },
+      data: {
+        price: newPrice
+      }
+    })
+
+    return { success: true }
+  } catch (err) {
+    console.error('Error change price:', err)
+    return { 
+      success: false, 
+      error: 'Не удалось обновить цену' 
+    }
+  }
+
+}
