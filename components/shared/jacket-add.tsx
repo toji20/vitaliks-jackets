@@ -27,7 +27,7 @@ export const JacketForm: React.FC<Props> = ({ categories }) => {
     defaultValues: {
       name: '',
       imageUrl: '',
-      price: 0,
+      price: 0, // Базовая цена теперь не используется для куртки
       descr: '',
       material: '',
       waterproof: '',
@@ -38,12 +38,13 @@ export const JacketForm: React.FC<Props> = ({ categories }) => {
       categoryId: 1,
       colors: [{ 
         name: '',
+        price: 0, // Цена теперь для каждого цвета
         imageUrl: '',
         imageUrlTwo: '',
         imageUrlThree: '',
         imageUrlFour: '',
       }],
-      sizes: [{ name: '', price: 0 }],
+      sizes: [{ name: '' }], // Убрал price из размеров
     },
   })
 
@@ -146,9 +147,10 @@ export const JacketForm: React.FC<Props> = ({ categories }) => {
     }
   }
 
-  const addColor = () => {
+const addColor = () => {
     appendColor({ 
       name: '',
+      price: 0,
       imageUrl: '',
       imageUrlTwo: '',
       imageUrlThree: '',
@@ -157,10 +159,10 @@ export const JacketForm: React.FC<Props> = ({ categories }) => {
   }
 
   const addSize = () => {
-    appendSize({ name: '', price: 0 })
+    appendSize({ name: '' })
   }
 
-const onSubmit = async (data: TcreateJacketShema) => {
+  const onSubmit = async (data: TcreateJacketShema) => {
     try {
       setSubmitting(true)
       
@@ -269,13 +271,13 @@ const onSubmit = async (data: TcreateJacketShema) => {
         {activeTab === 'basic' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
+
+<div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Название куртки *
                 </label>
                 <input
-
-type="text"
+                  type="text"
                   {...formMethods.register('name')}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   placeholder="Введите название куртки"
@@ -305,21 +307,6 @@ type="text"
                 </select>
                 {errors.categoryId && (
                   <p className="mt-1 text-sm text-red-600">{errors.categoryId.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Базовая цена куртки
-                </label>
-                <input
-                  type="number"
-                  {...formMethods.register('price', { valueAsNumber: true })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  placeholder="0"
-                />
-                {errors.price && (
-                  <p className="mt-1 text-sm text-red-600">{errors.price.message}</p>
                 )}
               </div>
             </div>
@@ -361,8 +348,7 @@ type="text"
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-{[
+              {[
                 { field: 'material', label: 'Материал' },
                 { field: 'waterproof', label: 'Водонепроницаемость' },
                 { field: 'insulation', label: 'Утеплитель' },
@@ -373,7 +359,8 @@ type="text"
                 <div key={field}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {label}
-                  </label>
+
+</label>
                   <input
                     type="text"
                     {...formMethods.register(field as any)}
@@ -407,7 +394,7 @@ type="text"
                   Вариации цветов
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Добавьте цвета куртки с несколькими изображениями для каждого цвета
+                  Добавьте цвета куртки с ценами и несколькими изображениями для каждого цвета
                 </p>
               </div>
               <button
@@ -438,20 +425,37 @@ type="text"
                     </button>
                   </div>
 
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Название цвета *
-                    </label>
-                    <input
-                      type="text"
-                      {...formMethods.register(`colors.${index}.name`)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Название цвета *
+                      </label>
+                      <input
+                        type="text"
+                        {...formMethods.register(`colors.${index}.name`)}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        placeholder="Например: Черный, Синий, Красный"
+                      />
+                      {errors.colors?.[index]?.name && (
+                        <p className="mt-1 text-sm text-red-600">{errors.colors[index]?.name?.message}</p>
+                      )}
+                    </div>
 
-placeholder="Например: Черный, Синий, Красный"
-                    />
-                    {errors.colors?.[index]?.name && (
-                      <p className="mt-1 text-sm text-red-600">{errors.colors[index]?.name?.message}</p>
-                    )}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Цена для этого цвета *
+                      </label>
+
+<input
+                        type="number"
+                        {...formMethods.register(`colors.${index}.price`, { valueAsNumber: true })}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        placeholder="0"
+                      />
+                      {errors.colors?.[index]?.price && (
+                        <p className="mt-1 text-sm text-red-600">{errors.colors[index]?.price?.message}</p>
+                      )}
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -508,7 +512,7 @@ placeholder="Например: Черный, Синий, Красный"
                   Размеры
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  Добавьте доступные размеры и дополнительные цены
+                  Добавьте доступные размеры (без дополнительных цен)
                 </p>
               </div>
               <button
@@ -521,12 +525,11 @@ placeholder="Например: Черный, Синий, Красный"
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {sizeFields.map((field, index) => (
                 <div key={field.id} className="p-4 border border-gray-200 rounded-lg bg-white">
                   <div className="flex gap-3 items-end">
-
-<div className="flex-1">
+                    <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Размер
                       </label>
@@ -535,17 +538,6 @@ placeholder="Например: Черный, Синий, Красный"
                         {...formMethods.register(`sizes.${index}.name`)}
                         className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                         placeholder="Например: M, L, XL"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Доп. цена
-                      </label>
-                      <input
-                        type="number"
-                        {...formMethods.register(`sizes.${index}.price`, { valueAsNumber: true })}
-                        className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                        placeholder="0"
                       />
                     </div>
                     <button

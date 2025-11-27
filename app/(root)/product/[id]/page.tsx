@@ -32,7 +32,6 @@ export default async function ProductPage({
     items={jacket}
     colors={jacket.colors}
     name={jacket.name}
-    price={Number(jacket.price)}
     descr={String(jacket.descr)}
     sizes={jacket.sizes}
     waterproof={String(jacket.waterproof)}

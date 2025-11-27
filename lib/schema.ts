@@ -6,6 +6,7 @@ export const colorSchema = z.object({
   imageUrlTwo: z.string().url().optional().nullable(),
   imageUrlThree: z.string().url().optional().nullable(),
   imageUrlFour: z.string().url().optional().nullable(),
+  price: z.number().int().nonnegative().optional().nullable(),
 });
 
 export const sizeSchema = z.object({
@@ -27,6 +28,7 @@ export const createJacketSchema = z.object({
   season: z.string().optional().nullable(),
   country: z.string().optional().nullable(),
   care: z.string().optional().nullable(),
+  priceAdjustment: z.number().int().nonnegative().optional().nullable(),
   
   categoryId: z.number().int().positive("ID категории обязателен"),
   

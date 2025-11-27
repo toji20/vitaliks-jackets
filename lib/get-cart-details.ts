@@ -23,7 +23,7 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
     quantity: item.quantity,
     name: item.jacketItem.jacket.name,
     imageUrl: item.jacketItem.jacket.imageUrl,
-    price: item.jacketItem.jacket.price ?? 0,
+    price: item.colors[0].price ?? 0,
     disabled: false,
     size: item.sizes[0] || undefined,
     color: item.colors[0] || undefined

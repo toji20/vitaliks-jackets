@@ -19,7 +19,7 @@ export type IJacket = Jacket & {
 interface Props {
   className?: string;
   name: string;
-  price: number;
+  price?: number;
   descr: string;
   items: IJacket;
   sizes: Size[];
@@ -62,6 +62,10 @@ export const JacketPage: React.FC<Props> = ({
   const [isZoomed, setIsZoomed] = useState(false);
   const [copyTextMess, setCopyTextMess] = useState(false);
   const { addCartItem, loading: cartLoading } = useCart();
+
+  const currentPrice = selectedColor?.price
+
+  price = Number(currentPrice)
 
   const enabledColors = colors.filter(color => color.disabled);
   const enabledSizes = sizes.filter(size => size.disabled);

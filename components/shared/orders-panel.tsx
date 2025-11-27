@@ -20,9 +20,9 @@ const renderOrderItems = (itemsJson: string) => {
             <div className="space-y-3">
                 {items.map((item, index) => {
                     const jacketName = item.jacketItem?.jacket?.name || 'Неизвестный продукт';
-                    const price = item.jacketItem?.jacket?.price | 0;
+                    const price = item.colors[0].price | 0;
                     const quantity = item.quantity || 1;
-                    
+                    const image = item.colors[0].imageUrl
                     const colors = item.colors || item.jacketItem?.colors || [];
                     const sizes = item.sizes || [];
                     
@@ -39,6 +39,7 @@ const renderOrderItems = (itemsJson: string) => {
                     return (
                         <div key={index} className="flex items-center justify-between py-2 border-b border-gray-200 last:border-b-0">
                             <div className="flex-1">
+                                <img src={image} className="flex w-30"/>
                                 <p className="font-medium text-gray-900">
                                     {jacketName} × {quantity}
                                 </p>
@@ -63,7 +64,7 @@ const renderOrderItems = (itemsJson: string) => {
                     <span className="font-semibold text-gray-900">Общая сумма заказа:</span>
                     <span className="font-bold text-lg text-gray-900">
                         {items.reduce((sum, item) => {
-                            const price = item.jacketItem?.jacket?.price | 0;
+                            const price = item.colors[0].price | 0;
                             const quantity = item.quantity || 1;
                             return sum + (price * quantity);
                         }, 0)} ₽

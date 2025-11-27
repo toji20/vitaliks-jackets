@@ -101,7 +101,7 @@ export async function addJacket(data: TcreateJacketShema) {
       data: {
         name: validatedData.name,
         imageUrl: validatedData.imageUrl || '',
-        price: validatedData.price,
+        price: validatedData.colors[0].price,
         descr: validatedData.descr,
         material: validatedData.material,
         waterproof: validatedData.waterproof,
@@ -117,6 +117,7 @@ export async function addJacket(data: TcreateJacketShema) {
             imageUrlTwo: color.imageUrlTwo,
             imageUrlThree: color.imageUrlThree,
             imageUrlFour: color.imageUrlFour,
+            price: color.price,
           }))
         },
         sizes: {
