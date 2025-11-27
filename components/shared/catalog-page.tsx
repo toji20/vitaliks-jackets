@@ -146,8 +146,8 @@ const resetFilters = () => {
 
   if (jackets.length === 0) {
     return (
-      <section className={cn('catalog-page py-16 bg-stone-50', className)}>
-        <div className='w-full mx-auto px-4 text-center'>
+      <section className={cn('catalog-page py-16 bg-stone-50 flex h-[100vh]', className)}>
+        <div className='w-full mx-auto px-4 text-center mt-[15%]'>
           <div className='w-24 h-24 bg-gray-100 flex items-center justify-center mx-auto mb-6'>
             <Search size={32} className='text-gray-400' />
           </div>
