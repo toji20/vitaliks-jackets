@@ -552,7 +552,7 @@ const closeZoom = () => {
       
       {isZoomed && (
   <div 
-    className='fixed inset-0 bg-black/70 z-60 flex items-center justify-center p-4 overflow-hidden'
+    className='fixed inset-0 bg-black/70 z-60 flex items-center justify-center overflow-hidden'
     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     onClick={closeZoom}
   >
@@ -597,7 +597,7 @@ const closeZoom = () => {
       <img 
         src={allImages[currentImageIndex]} 
         alt={`${name} - ${selectedColor?.name || ''} - увеличенное фото ${currentImageIndex + 1}`}
-        className='max-w-full h-[80vh] lg:max-h-[95vh] object-cover cursor-default'
+        className='max-w-full h-[80vh] lg:h-[95vh] w-[100vw] lg:w-full object-cover cursor-default'
         onClick={(e) => e.stopPropagation()}
       />
     </div>

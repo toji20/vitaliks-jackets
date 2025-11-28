@@ -14,7 +14,7 @@ export default async function Home() {
   const jackets = await prisma.jacket.findMany({
 
   })
-  const winterJackets = jackets.filter(jacket => jacket.season?.includes('Зимняя'))
+  const winterJackets = jackets.filter(jacket => jacket.season?.includes('Зимняя') || jacket.season?.includes('Зима') || jacket.season?.includes('Зимние'))
   return (
     <div className="">
       <Suspense>
